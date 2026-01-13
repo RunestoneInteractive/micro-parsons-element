@@ -416,4 +416,31 @@ export class ParsonsInput implements IParsonsInput {
         }
         this.parentElement.logEvent(restoreEvent);
     }
+
+    public restoreAnswerByIndices(indices: Array<number>): void {
+        this.resetInput();
+
+        for (let i = 0; i < indices.length; ++i) {
+            const target = String(indices[i]);
+
+            if (this._dragArea.hasChildNodes()) {
+                let el = this._dragArea.firstChild as HTMLDivElement;
+                while (el) {
+                    if (el.dataset.index === target) {
+                        el.click(); // preserve reusable/nonreusable behavior
+                        break;
+                    }
+                    el = el.nextSibling as HTMLDivElement;
+                }
+            }
+        }
+
+        // Keep logging type-compatible without touching LoggingEvents in this PR:
+        const restoreEvent: MicroParsonsEvent.RestoreAnswer = {
+            type: 'restore',
+            // store as strings to satisfy Array<string> type
+            answer: indices.map(String),
+        };
+        this.parentElement.logEvent(restoreEvent);
+    }
 }
