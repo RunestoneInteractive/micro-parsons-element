@@ -168,7 +168,6 @@ export class MicroParsonsElement extends HTMLElement {
 
 export const InitMicroParsons = (props: MicroParsonsProps) => {
     let parentElem: HTMLElement | null;
-    console.log('PISS OFF DICKLESS!');
     try {
         parentElem = document.querySelector(props.selector);
     } catch {
