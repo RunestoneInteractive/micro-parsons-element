@@ -112,6 +112,10 @@ export class MicroParsonsElement extends HTMLElement {
         this.hparsonsInput.restoreAnswer(answer);
     }
 
+    public restoreAnswerByIndices(indices: Array<number>) {
+        (this.hparsonsInput as ParsonsInput).restoreAnswerByIndices(indices);
+    }
+
     public getCurrentInput(addSpace: boolean) {
         return this.hparsonsInput.getText(addSpace);
     }
@@ -164,6 +168,7 @@ export class MicroParsonsElement extends HTMLElement {
 
 export const InitMicroParsons = (props: MicroParsonsProps) => {
     let parentElem: HTMLElement | null;
+    console.log('PISS OFF DICKLESS!');
     try {
         parentElem = document.querySelector(props.selector);
     } catch {
